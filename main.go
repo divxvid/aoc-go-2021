@@ -2,32 +2,41 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 
 	"github.com/divxvid/aoc-go-2021/days"
 )
 
-const fileName = "inputs/ay1/test.txt"
+const fileName = "inputs/day1.txt"
+
+type Problem interface {
+	SolveA() (string, error)
+	SolveB() (string, error)
+}
 
 func main() {
 	var problem Problem
-	problem = days.NewDay1()
 
-	err := problem.ReadFromFile(fileName)
+	content, err := ioutil.ReadFile(fileName)
 	if err != nil {
-		log.Fatalf("Error in ReadFromFile: %+v", err)
+		log.Fatalf("Error in reading from File: %+v", err)
+	}
+
+	problem, err = days.NewDay1(string(content))
+	if err != nil {
+		log.Fatalf("Error in creating new instance: %+v", err)
 	}
 
 	outputA, err := problem.SolveA()
 	if err != nil {
 		log.Fatalf("Error in SolveA: %+v", err)
 	}
-	fmt.Println("Solve A:\n", outputA)
+	fmt.Printf("Solve A:\n%s\n", outputA)
 
-	problem.ReadFromFile(fileName)
 	outputB, err := problem.SolveB()
 	if err != nil {
 		log.Fatalf("Error in SolveB: %+v", err)
 	}
-	fmt.Println("Solve B:\n", outputB)
+	fmt.Printf("Solve B:\n%s\n", outputB)
 }
