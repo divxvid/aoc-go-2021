@@ -6,17 +6,14 @@ import (
 	"log"
 
 	"github.com/divxvid/aoc-go-2021/days/day2"
+	"github.com/divxvid/aoc-go-2021/models"
+	"github.com/divxvid/aoc-go-2021/utils"
 )
 
 const fileName = "inputs/day2.txt"
 
-type Problem interface {
-	SolveA() (string, error)
-	SolveB() (string, error)
-}
-
 func main() {
-	var problem Problem
+	var problem models.Problem
 
 	content, err := ioutil.ReadFile(fileName)
 	if err != nil {
@@ -28,13 +25,13 @@ func main() {
 		log.Fatalf("Error in creating new instance: %+v", err)
 	}
 
-	outputA, err := problem.SolveA()
+	outputA, err := utils.TimeSolve(problem.SolveA)
 	if err != nil {
 		log.Fatalf("Error in SolveA: %+v", err)
 	}
 	fmt.Printf("Solve A:\n%s\n", outputA)
 
-	outputB, err := problem.SolveB()
+	outputB, err := utils.TimeSolve(problem.SolveB)
 	if err != nil {
 		log.Fatalf("Error in SolveB: %+v", err)
 	}

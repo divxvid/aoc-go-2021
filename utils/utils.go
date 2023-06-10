@@ -1,6 +1,10 @@
 package utils
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+	"time"
+)
 
 func SplitIntoLines(data string) []string {
 	lines := make([]string, 0)
@@ -14,4 +18,15 @@ func SplitIntoLines(data string) []string {
 	}
 
 	return lines
+}
+
+type SolveFuncType func() (string, error)
+
+func TimeSolve(f SolveFuncType) (string, error) {
+	startTime := time.Now()
+	ret, err := f()
+	timeTaken := time.Since(startTime)
+
+	fmt.Printf("Time Taken for Solving: %d us\n", timeTaken.Microseconds())
+	return ret, err
 }
