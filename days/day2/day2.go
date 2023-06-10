@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+
+	"github.com/divxvid/aoc-go-2021/utils"
 )
 
 type direction int
@@ -24,14 +26,9 @@ type Move struct {
 }
 
 func New(data string) (*Day2, error) {
-	lines := strings.Split(data, "\n")
 	moves := make([]Move, 0)
 
-	for _, line := range lines {
-		line = strings.Trim(line, "\r")
-		if line == "" {
-			continue
-		}
+	for _, line := range utils.SplitIntoLines(data) {
 		lineContent := strings.Split(line, " ")
 		if len(lineContent) != 2 {
 			return nil, fmt.Errorf("Line does not have direction and amount. Line: %s\n", line)

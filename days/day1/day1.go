@@ -2,7 +2,8 @@ package day1
 
 import (
 	"strconv"
-	"strings"
+
+	"github.com/divxvid/aoc-go-2021/utils"
 )
 
 type Day1 struct {
@@ -37,13 +38,8 @@ func (d *Day1) SolveB() (string, error) {
 }
 
 func New(data string) (*Day1, error) {
-	lines := strings.Split(data, "\n")
 	depths := make([]int64, 0)
-	for _, line := range lines {
-		line = strings.Trim(line, "\r")
-		if line == "" {
-			continue
-		}
+	for _, line := range utils.SplitIntoLines(data) {
 		v, err := strconv.ParseInt(line, 10, 64)
 		if err != nil {
 			return nil, err
