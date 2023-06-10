@@ -5,10 +5,10 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/divxvid/aoc-go-2021/days/day1"
+	"github.com/divxvid/aoc-go-2021/days/day2"
 )
 
-const fileName = "inputs/day1.txt"
+const fileName = "inputs/day2.txt"
 
 type Problem interface {
 	SolveA() (string, error)
@@ -23,7 +23,7 @@ func main() {
 		log.Fatalf("Error in reading from File: %+v", err)
 	}
 
-	problem, err = day1.New(string(content))
+	problem, err = day2.New(string(content))
 	if err != nil {
 		log.Fatalf("Error in creating new instance: %+v", err)
 	}
