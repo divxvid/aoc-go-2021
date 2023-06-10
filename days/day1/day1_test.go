@@ -1,4 +1,4 @@
-package days
+package day1
 
 import "testing"
 
@@ -16,7 +16,7 @@ const input = `199
 func TestSolveA(t *testing.T) {
 	want := "7"
 
-	day, err := NewDay1(input)
+	day, err := New(input)
 	if err != nil {
 		t.Fatalf("Error in creating new Instance: %+v", err)
 	}
@@ -34,7 +34,7 @@ func TestSolveA(t *testing.T) {
 func TestSolveB(t *testing.T) {
 	want := "5"
 
-	day, err := NewDay1(input)
+	day, err := New(input)
 	if err != nil {
 		t.Fatalf("Error in creating new Instance: %+v", err)
 	}

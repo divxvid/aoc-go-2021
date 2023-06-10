@@ -1,4 +1,4 @@
-package days
+package day1
 
 import (
 	"strconv"
@@ -36,7 +36,7 @@ func (d *Day1) SolveB() (string, error) {
 	return strconv.Itoa(ans), nil
 }
 
-func NewDay1(data string) (*Day1, error) {
+func New(data string) (*Day1, error) {
 	lines := strings.Split(data, "\n")
 	depths := make([]int64, 0)
 	for _, line := range lines {
