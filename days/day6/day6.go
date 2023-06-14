@@ -1,6 +1,7 @@
 package day6
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 )
@@ -23,9 +24,34 @@ func New(data string) (*Day6, error) {
 }
 
 func (d *Day6) SolveA() (string, error) {
-	return "unimplemented", nil
+	return solveGeneric(80, d.initialConfig)
 }
 
 func (d *Day6) SolveB() (string, error) {
-	return "unimplemented", nil
+	return solveGeneric(256, d.initialConfig)
+}
+
+func solveGeneric(numDays int64, nums []int64) (string, error) {
+	var result int64 = int64(len(nums))
+	dp := make([]int64, numDays+1)
+	for i := 0; i <= int(numDays); i++ {
+		dp[i] = -1
+	}
+
+	for _, x := range nums {
+		result += f(numDays-x-1, dp)
+	}
+	return fmt.Sprintf("%d", result), nil
+}
+
+func f(x int64, dp []int64) int64 {
+	if x < 0 {
+		return 0
+	}
+	if dp[x] != -1 {
+		return dp[x]
+	}
+	result := 1 + f(x-7, dp) + f(x-9, dp)
+	dp[x] = result
+	return result
 }
