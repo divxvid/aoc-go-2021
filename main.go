@@ -5,12 +5,12 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/divxvid/aoc-go-2021/days/day8"
+	"github.com/divxvid/aoc-go-2021/days/day9"
 	"github.com/divxvid/aoc-go-2021/models"
 	"github.com/divxvid/aoc-go-2021/utils"
 )
 
-const fileName = "inputs/day8.txt"
+const fileName = "inputs/day9.txt"
 
 func main() {
 	var problem models.Problem
@@ -20,7 +20,7 @@ func main() {
 		log.Fatalf("Error in reading from File: %+v", err)
 	}
 
-	problem, err = day8.New(string(content))
+	problem, err = day9.New(string(content))
 	if err != nil {
 		log.Fatalf("Error in creating new instance: %+v", err)
 	}
