@@ -1,7 +1,6 @@
 package day8
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -39,7 +38,6 @@ func TestSolveA(t *testing.T) {
 func TestSolveB(t *testing.T) {
 	problem, err := New(input)
 
-	fmt.Printf("%+v\n", problem)
 	if err != nil {
 		t.Fatalf("Cannot create new instance: %+v", err)
 	}
