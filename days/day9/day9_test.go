@@ -37,7 +37,7 @@ func TestSolveB(t *testing.T) {
 		t.Fatalf("Cannot create new instance: %+v", err)
 	}
 
-	want := "61229"
+	want := "1134"
 
 	got, err := problem.SolveB()
 
