@@ -1,7 +1,7 @@
 package day8
 
 import (
-	"fmt"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -25,10 +25,10 @@ func New(data string) (*Day8, error) {
 		segments := strings.Split(strings.Trim(parts[0], " "), " ")
 		digits := strings.Split(strings.Trim(parts[1], " "), " ")
 		for i := range segments {
-			segments[i] = strings.Trim(segments[i], " ")
+			segments[i] = sortString(strings.Trim(segments[i], " "))
 		}
 		for i := range digits {
-			digits[i] = strings.Trim(digits[i], " ")
+			digits[i] = sortString(strings.Trim(digits[i], " "))
 		}
 
 		queries = append(queries, Query{jumbledSegments: segments, digits: digits})
@@ -37,6 +37,12 @@ func New(data string) (*Day8, error) {
 	return &Day8{
 		queries: queries,
 	}, nil
+}
+
+func sortString(s string) string {
+	runes := []rune(s)
+	sort.Slice(runes, func(i, j int) bool { return runes[i] < runes[j] })
+	return string(runes)
 }
 
 // Number of Digits:
@@ -79,7 +85,6 @@ func (d *Day8) SolveB() (string, error) {
 	result := 0
 	for _, query := range d.queries {
 		ret := solveSingleQuery(&query)
-		fmt.Println(query.digits, ret)
 		result += ret
 	}
 	return strconv.Itoa(result), nil
@@ -187,7 +192,7 @@ func findDigit2String(data []string) string {
 
 	missingCharacter := ' '
 	for k, v := range counts {
-		if v == 6 {
+		if v == 9 {
 			missingCharacter = k
 		}
 	}
